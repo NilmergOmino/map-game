@@ -1,3 +1,107 @@
+$color-m1: rgb(20,20,20);
+$color-m4: rgb(240,240,240);
+$color-green: rgba(0,150,0,1);
+$color-green-light: rgba(0,220,0,1);
 body{
-    background-color: blue;
+    // background-color: rgb(120,220,125);
+    background-color: $color-green;
+    margin: 0;
+}
+.header{
+    min-height: 60px;
+    padding: 10px;
+    box-sizing: border-box;
+    text-align: center;
+    background-color: $color-m1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: $color-m4;
+}
+.start-panel{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+.game{
+    &-container{
+        padding: 85px 20px 20px 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    &-panel{
+        display: flex;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        background-color: $color-m1;
+        color: $color-m4;
+        padding: 10px 0;
+    }
+    &-stats{
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+    }
+    &-country{
+        text-align: center;
+        font-size: 20px;
+        margin-top: 5px;
+        &_correct{
+            color: $color-green-light;
+        }
+        &_wrong{
+            color: red;
+        }
+    }
+    &-map-container{
+
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        align-content: flex-start;
+        width: 100%;
+    }
+    &-map{
+        width: 90%;
+        height: auto;
+    }
+}
+.hidden{
+    display: none;
+}
+.time{
+    color: red;
+    &_good{
+        color: $color-green-light;
+    }
+    &_enough{
+        color: orange;
+    }
+}
+.map-item{
+    transition: 0.2s;
+    &:hover{
+        fill: #444;
+    }
+}
+.map-item_correct{
+    fill: #242;
+    stroke: white;
+    &:hover{
+        fill: #242;
+    }
+}
+.map-item_wrong{
+    fill: #800;
+    &:hover{
+        fill: #800;
+    }
 }

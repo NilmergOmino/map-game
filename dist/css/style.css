@@ -1,4 +1,93 @@
 body {
-  background-color: blue; }
+  background-color: #009600;
+  margin: 0; }
+
+.header {
+  min-height: 60px;
+  padding: 10px;
+  box-sizing: border-box;
+  text-align: center;
+  background-color: #141414;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #f0f0f0; }
+
+.start-panel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center; }
+
+.game-container {
+  padding: 85px 20px 20px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; }
+
+.game-panel {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  flex-direction: column;
+  background-color: #141414;
+  color: #f0f0f0;
+  padding: 10px 0; }
+
+.game-stats {
+  display: flex;
+  justify-content: space-around;
+  width: 100%; }
+
+.game-country {
+  text-align: center;
+  font-size: 20px;
+  margin-top: 5px; }
+  .game-country_correct {
+    color: #00dc00; }
+  .game-country_wrong {
+    color: red; }
+
+.game-map-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  align-content: flex-start;
+  width: 100%; }
+
+.game-map {
+  width: 90%;
+  height: auto; }
+
+.hidden {
+  display: none; }
+
+.time {
+  color: red; }
+  .time_good {
+    color: #00dc00; }
+  .time_enough {
+    color: orange; }
+
+.map-item {
+  transition: 0.2s; }
+  .map-item:hover {
+    fill: #444; }
+
+.map-item_correct {
+  fill: #242;
+  stroke: white; }
+  .map-item_correct:hover {
+    fill: #242; }
+
+.map-item_wrong {
+  fill: #800; }
+  .map-item_wrong:hover {
+    fill: #800; }
 
 /*# sourceMappingURL=style.css.map*/
