@@ -9,7 +9,6 @@ window.addEventListener('DOMContentLoaded', function(){
         toggleView();
         startGame();
     });
-
 })
 
 function toggleView(){
@@ -80,13 +79,17 @@ const Game = {
             Game.time -= 1;
             Game.timeContainer.textContent = ((Game.time/10)%1 == 0)?(Game.time/10)+".0" : Game.time/10;
             setTimeout(Game.counting, 100);
+            if(Game.time == 0) Game.letClick = false;
         }
         else if(Game.time <= 0){
             Game.points--;
             Game.pointsContainer.textContent = Game.points;
             Game.stopCounting = true;
-            Game.time = 100;
             Game.gameCountry.classList.add('game-country_wrong');
+            let x = window.innerWidth/2-10;
+            let y = (window.innerHeight/2)+pageYOffset-15;
+            console.log (x+"_"+y);
+            Game.flyingPoint('-1','minus',x,y);
             window.setTimeout(Game.startRound, 700);
         }
     },
@@ -96,7 +99,7 @@ const Game = {
             Game.letClick = true;
             Game.setCountry();
             Game.stopCounting = false;
-            Game.setTime();
+            Game.time = 100;
             Game.counting();
         }
         else{
@@ -106,10 +109,19 @@ const Game = {
     checkAnswer: function(event){
         Game.stopCounting = true;
         if(Game.letClick){
+            let x = event.clientX-10;
+            let y = event.clientY-22+pageYOffset;
             Game.letClick = false;
             let mapItemId = event.target.id;
             if(mapItemId == Game.currentCountry){
-                (Game.time >= 50)? Game.points+=2 : Game.points++;
+                if(Game.time >= 50){
+                    Game.points+=2
+                    Game.flyingPoint('+2','plus-plus',x,y);
+                }
+                else{
+                    Game.points++;
+                    Game.flyingPoint('+1','plus',x,y);
+                }
                 event.target.removeEventListener('click', Game.checkAnswer);
                 event.target.classList.add('map-item_correct');
                 Game.removeCountry(mapItemId);
@@ -119,6 +131,7 @@ const Game = {
                 Game.points--;
                 event.target.classList.add('map-item_wrong');
                 Game.gameCountry.classList.add('game-country_wrong');
+                Game.flyingPoint('-1','minus',x,y);
                 window.setTimeout(function(){
                     event.target.classList.remove('map-item_wrong');
                 }, 700);
@@ -136,5 +149,16 @@ const Game = {
         Game.gameCountry.textContent = "Gratulacje, ukończyłeś grę!";
         Game.gameCountry.appendChild(btnRestart);
         Game.pointsContainer.textContent = Game.points + " / " + Game.maxPoints;
+    },
+    flyingPoint: function(content, pointType, x, y){
+        let point = document.createElement('span');
+        point.textContent = content;
+        point.classList.add('flying-point', 'flying-point_'+pointType);
+        point.style.left = x+'px';
+        point.style.top = y+'px';
+        document.body.appendChild(point);
+        window.setTimeout(function(){
+            document.body.removeChild(point);
+        },1500)
     }
 }
