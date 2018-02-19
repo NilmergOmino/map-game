@@ -64,6 +64,29 @@ body {
   width: 90%;
   height: auto; }
 
+@keyframes fly-away {
+  0% { }
+  100% {
+    opacity: 0;
+    transform: translateY(-40px); } }
+
+.flying-point {
+  animation: fly-away;
+  animation-duration: 1.5s;
+  animation-fill-mode: forwards;
+  font-size: 16px;
+  font-weight: bold;
+  position: absolute;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  cursor: default; }
+  .flying-point_plus {
+    color: #00dc00; }
+  .flying-point_plus-plus {
+    color: #00dc00;
+    font-size: 18px; }
+  .flying-point_minus {
+    color: red; }
+
 .hidden {
   display: none; }
 
