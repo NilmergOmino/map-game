@@ -22,9 +22,16 @@
             <p class="rules__paragraph">Gotów?</p>
         </div>
         <button class="btn_start" id="btn_start">Zaczynajmy!</button>
+        <button class="btn_win-board" id="btn_win-board">Moje wyniki</button>
+    </div>
+    <div class="win-board hidden" id="win-board">
+        <button class="win-board__btn_close" id="btn_close">zamknij</button>
+        <div class="win-board__btns-container" id="btns-container"></div>
+        <div class="win-board__wins-container" id="wins-container"></div>
     </div>
     <div class="game-container hidden" id="game-container">
         <div class="game-panel" id="game-panel">
+            <button class="btn_back" id="btn_back">powrót</button>
             <div class="game-stats">
                 <div class="points-container">Punkty: <span class="points" id="points">0</span></div>
                 <div class="time-container">Czas: <span class="time" id="time">10</span></div>

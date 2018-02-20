@@ -1,31 +1,46 @@
 import '../scss/style.scss';
 // import { Europe } from './maps/europe.js';
 import { EuropePL } from './maps/europe-pl.js';
-
+import { winBoard } from './win-board.js';
 
 window.addEventListener('DOMContentLoaded', function(){
     const btnStart = document.getElementById('btn_start');
+    const btnWinBoard = document.getElementById('btn_win-board');
+    const btnClose = document.getElementById('btn_close');
+    const btnBack = document.getElementById('btn_back');
     btnStart.addEventListener('click', function(){
-        toggleView();
-        startGame();
+        app.toggleView();
+        app.startGame();
     });
+    btnWinBoard.addEventListener('click', winBoard.show);
+    btnClose.addEventListener('click', winBoard.hide);
+    btnBack.addEventListener('click', app.startView);
 })
 
-function toggleView(){
-    const header = document.getElementById('header');
-    const startPanel = document.getElementById('start-panel');
-    const gameContainer = document.getElementById('game-container');
-    header.classList.toggle('hidden');
-    startPanel.classList.toggle('hidden');
-    gameContainer.classList.toggle('hidden');
+const app = {
+    header: document.getElementById('header'),
+    startPanel: document.getElementById('start-panel'),
+    gameContainer: document.getElementById('game-container'),
+    startGame: function(){
+        Game.init();
+    },
+    restartGame: function(){
+        Game.stopAndClean();
+        winBoard.hide();
+        Game.init();
+    },
+    startView: function(){
+        Game.stopAndClean();
+        winBoard.hide();
+        app.toggleView();
+    },
+    toggleView: function(){
+        app.header.classList.toggle('hidden');
+        app.startPanel.classList.toggle('hidden');
+        app.gameContainer.classList.toggle('hidden');
+    }
 }
-function startGame(){
-    Game.init();
-}
-function restartGame(){
-    document.querySelectorAll('.map-item').forEach(el=>el.classList.remove('map-item_correct'));
-    toggleView();
-}
+
 const Game = {
     timeContainer: document.getElementById('time'),
     pointsContainer: document.getElementById('points'),
@@ -37,10 +52,15 @@ const Game = {
         Game.points = 0;
         Game.pointsContainer.textContent = Game.points;
         Game.time = 100;
-        Game.setCounties();
+        Game.setCountries();
         Game.mapItems.forEach(el=>el.addEventListener('click',Game.checkAnswer));
     },
-    setCounties: function(){
+    stopAndClean: function(){
+        document.querySelectorAll('.map-item').forEach(el=>el.classList.remove('map-item_correct'));
+        Game.stopCounting = true;
+        Game.letClick = false;
+    },
+    setCountries: function(){
         Game.countriesArr = [];
         for(let key in EuropePL){
             if(EuropePL.hasOwnProperty(key)) Game.countriesArr.push(key);
@@ -52,7 +72,7 @@ const Game = {
         Game.time = 100;
     },
     setCountry: function(){
-        let random = Math.floor(Math.random()*(Game.countriesArr.length-1));
+        let random = Math.round(Math.random()*(Game.countriesArr.length-1));
         Game.currentCountry = Game.countriesArr[random];
         Game.gameCountry.classList.remove('game-country_correct');
         Game.gameCountry.classList.remove('game-country_wrong');
@@ -88,7 +108,6 @@ const Game = {
             Game.gameCountry.classList.add('game-country_wrong');
             let x = window.innerWidth/2-10;
             let y = (window.innerHeight/2)+pageYOffset-15;
-            console.log (x+"_"+y);
             Game.flyingPoint('-1','minus',x,y);
             window.setTimeout(Game.startRound, 700);
         }
@@ -142,13 +161,13 @@ const Game = {
         }
     },
     endGame: function(){
-        let btnRestart = document.createElement('button');
-        btnRestart.classList.add('btn_restart');
-        btnRestart.textContent = "Zagraj ponownie";
-        btnRestart.addEventListener('click', restartGame);
         Game.gameCountry.textContent = "Gratulacje, ukończyłeś grę!";
-        Game.gameCountry.appendChild(btnRestart);
         Game.pointsContainer.textContent = Game.points + " / " + Game.maxPoints;
+        winBoard.show();
+        let btnRestart = winBoard.createButton('btn_restart', 'zagraj ponownie');
+        let btnStartView = winBoard.createButton('btn_restart', 'powrót do wyboru mapy');
+        btnRestart.addEventListener('click', app.restartGame);
+        btnStartView.addEventListener('click', app.startView);
     },
     flyingPoint: function(content, pointType, x, y){
         let point = document.createElement('span');
