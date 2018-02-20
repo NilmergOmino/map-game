@@ -16,6 +16,9 @@ const winBoard = {
         winBoard.btnsContainer.appendChild(btn);
         return btn;
     },
+    addNewResult: function(){
+        
+    },
     showResults: function(){
 
     }

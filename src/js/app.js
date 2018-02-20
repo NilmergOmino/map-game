@@ -1,6 +1,8 @@
 import '../scss/style.scss';
-// import { Europe } from './maps/europe.js';
 import { EuropePL } from './maps/europe-pl.js';
+import { AfricaPL } from './maps/africa-pl.js';
+import { PolandPL } from './maps/poland-pl.js';
+
 import { winBoard } from './win-board.js';
 
 window.addEventListener('DOMContentLoaded', function(){
@@ -8,6 +10,9 @@ window.addEventListener('DOMContentLoaded', function(){
     const btnWinBoard = document.getElementById('btn_win-board');
     const btnClose = document.getElementById('btn_close');
     const btnBack = document.getElementById('btn_back');
+    const selectMap = document.getElementById('select-map');
+    selectMap.addEventListener('change', Game.setMap);
+    Game.setMap();
     btnStart.addEventListener('click', function(){
         app.toggleView();
         app.startGame();
@@ -45,25 +50,50 @@ const Game = {
     timeContainer: document.getElementById('time'),
     pointsContainer: document.getElementById('points'),
     gameCountry: document.getElementById('game-country'),
-    mapItems: document.querySelectorAll('.map-item'),
+    // mapItems: document.querySelectorAll('.map-item'),
+    selectMap: document.getElementById('select-map'),
     init: function(){
         Game.stopCounting = false;
         Game.letClick = true;
         Game.points = 0;
         Game.pointsContainer.textContent = Game.points;
         Game.time = 100;
+        Game.setMapItems();
         Game.setCountries();
         Game.mapItems.forEach(el=>el.addEventListener('click',Game.checkAnswer));
     },
+    setMap: function(){
+        Game.map = Game.selectMap.value;
+        switch(Game.map){
+            case 'europe':
+                Game.mapObject = EuropePL;
+                break;
+            case 'africa':
+                Game.mapObject = AfricaPL;
+                break;
+            case 'poland':
+                Game.mapObject = PolandPL;
+                break;
+            default:
+                Game.mapObject = EuropePL;
+        }
+        document.querySelectorAll('.game-map').forEach(el=>{
+            (el.id == Game.map)? el.classList.remove('hidden'):el.classList.add('hidden');
+        })
+    },
     stopAndClean: function(){
-        document.querySelectorAll('.map-item').forEach(el=>el.classList.remove('map-item_correct'));
+        document.querySelectorAll('.map-item_correct').forEach(el=>el.classList.remove('map-item_correct'));
         Game.stopCounting = true;
         Game.letClick = false;
     },
+    setMapItems: function(){
+        let items = '#'+Game.map+' .map-item';
+        Game.mapItems = document.querySelectorAll(items);
+    },
     setCountries: function(){
         Game.countriesArr = [];
-        for(let key in EuropePL){
-            if(EuropePL.hasOwnProperty(key)) Game.countriesArr.push(key);
+        for(let key in Game.mapObject){
+            if(Game.mapObject.hasOwnProperty(key)) Game.countriesArr.push(key);
         }
         Game.maxPoints = Game.countriesArr.length*2;
         Game.startRound();
@@ -76,7 +106,7 @@ const Game = {
         Game.currentCountry = Game.countriesArr[random];
         Game.gameCountry.classList.remove('game-country_correct');
         Game.gameCountry.classList.remove('game-country_wrong');
-        Game.gameCountry.textContent = EuropePL[Game.currentCountry];
+        Game.gameCountry.textContent = Game.mapObject[Game.currentCountry];
     },
     removeCountry: function(item){
         let itemIndex = Game.countriesArr.indexOf(item);
@@ -178,6 +208,6 @@ const Game = {
         document.body.appendChild(point);
         window.setTimeout(function(){
             document.body.removeChild(point);
-        },1500)
+        },1500);
     }
 }
