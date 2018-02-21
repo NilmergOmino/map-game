@@ -1,8 +1,4 @@
 import '../scss/style.scss';
-import { EuropePL } from './maps/europe-pl.js';
-import { AfricaPL } from './maps/africa-pl.js';
-import { PolandPL } from './maps/poland-pl.js';
-
 import { winBoard } from './win-board.js';
 
 window.addEventListener('DOMContentLoaded', function(){
@@ -50,9 +46,13 @@ const Game = {
     timeContainer: document.getElementById('time'),
     pointsContainer: document.getElementById('points'),
     gameCountry: document.getElementById('game-country'),
-    // mapItems: document.querySelectorAll('.map-item'),
     selectMap: document.getElementById('select-map'),
+    mapContainer: document.getElementById('game-map-container'),
     init: function(){
+        Game.mapContainer.innerHTML = Game.mapSVG;
+        let svgMap = Game.mapContainer.querySelector('svg');
+        svgMap.id = Game.map;
+        svgMap.classList.add(Game.map, "game-map");
         Game.stopCounting = false;
         Game.letClick = true;
         Game.points = 0;
@@ -64,25 +64,29 @@ const Game = {
     },
     setMap: function(){
         Game.map = Game.selectMap.value;
-        switch(Game.map){
-            case 'europe':
-                Game.mapObject = EuropePL;
-                break;
-            case 'africa':
-                Game.mapObject = AfricaPL;
-                break;
-            case 'poland':
-                Game.mapObject = PolandPL;
-                break;
-            default:
-                Game.mapObject = EuropePL;
-        }
-        document.querySelectorAll('.game-map').forEach(el=>{
-            (el.id == Game.map)? el.classList.remove('hidden'):el.classList.add('hidden');
+        let mapSource = "js/maps-info/"+Game.map+'.json';
+        let ajax = new XMLHttpRequest();
+        ajax.open("GET", mapSource, true);
+        ajax.addEventListener('load', function(){
+            if(this.status === 200){
+                Game.mapObject = JSON.parse(ajax.responseText)
+                Game.loadMap();
+            }
+            else alert('Błąd połączenia! Prosimy spróbować później.');
         })
+        ajax.send();
+    },
+    loadMap: function(){
+        let mapSource = "img/maps/"+Game.map+".svg";
+        let ajax = new XMLHttpRequest();
+        ajax.open("GET", mapSource, true);
+        ajax.addEventListener('load', function(){
+            (this.status === 200)? Game.mapSVG = ajax.responseText : alert('Błąd połączenia! Prosimy spróbować później.');
+        })
+        ajax.send();
     },
     stopAndClean: function(){
-        document.querySelectorAll('.map-item_correct').forEach(el=>el.classList.remove('map-item_correct'));
+        Game.mapContainer.innerHTML = '';
         Game.stopCounting = true;
         Game.letClick = false;
     },

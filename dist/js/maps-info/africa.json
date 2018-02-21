@@ -1,4 +1,4 @@
-const AfricaPL = {
+{
     "AO": "Angola",
     "BI": "Burundi",
     "BJ": "Benin",
@@ -49,6 +49,4 @@ const AfricaPL = {
     "ZM": "Zambia",
     "ZW": "Zimbabwe",
     "SO": "Somalia"
-  }
-
-export { AfricaPL };
+}

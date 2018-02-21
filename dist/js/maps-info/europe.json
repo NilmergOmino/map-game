@@ -1,4 +1,4 @@
-const EuropePL = {
+{
 	"AL": "Albania",
 	"AD": "Andora",
 	"AT": "Austria",
@@ -42,4 +42,3 @@ const EuropePL = {
 	"ES": "Hiszpania",
 	"XK": "Kosowo"
 }
-export {EuropePL};
