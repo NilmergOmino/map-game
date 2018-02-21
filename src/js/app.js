@@ -13,9 +13,10 @@ window.addEventListener('DOMContentLoaded', function(){
         app.toggleView();
         app.startGame();
     });
-    btnWinBoard.addEventListener('click', winBoard.show);
+    btnWinBoard.addEventListener('click', winBoard.showAllResults);
     btnClose.addEventListener('click', winBoard.hide);
     btnBack.addEventListener('click', app.startView);
+    winBoard.btnResetResults.addEventListener('click', winBoard.resetResults);
 })
 
 const app = {
@@ -162,6 +163,7 @@ const Game = {
     checkAnswer: function(event){
         Game.stopCounting = true;
         if(Game.letClick){
+            winBoard.addNewResult(Game.map, Game.points);
             let x = event.clientX-10;
             let y = event.clientY-22+pageYOffset;
             Game.letClick = false;
@@ -202,6 +204,7 @@ const Game = {
         let btnStartView = winBoard.createButton('btn_restart', 'powrót do wyboru mapy');
         btnRestart.addEventListener('click', app.restartGame);
         btnStartView.addEventListener('click', app.startView);
+        winBoard.addNewResult(Game.map, Game.points);
     },
     flyingPoint: function(content, pointType, x, y){
         let point = document.createElement('span');
