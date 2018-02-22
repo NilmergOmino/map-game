@@ -50,6 +50,7 @@ const Game = {
     selectMap: document.getElementById('select-map'),
     mapContainer: document.getElementById('game-map-container'),
     init: function(){
+        Game.status = true;
         Game.mapContainer.innerHTML = Game.mapSVG;
         let svgMap = Game.mapContainer.querySelector('svg');
         svgMap.id = Game.map;
@@ -90,6 +91,7 @@ const Game = {
         Game.mapContainer.innerHTML = '';
         Game.stopCounting = true;
         Game.letClick = false;
+        Game.status = false;
     },
     setMapItems: function(){
         let items = '#'+Game.map+' .map-item';
@@ -148,16 +150,18 @@ const Game = {
         }
     },
     startRound: function(){
-        if(Game.countriesArr.length > 0){
-            Game.stopCounting = false;
-            Game.letClick = true;
-            Game.setCountry();
-            Game.stopCounting = false;
-            Game.time = 100;
-            Game.counting();
-        }
-        else{
-            Game.endGame();
+        if(Game.status){
+            if(Game.countriesArr.length > 0){
+                Game.stopCounting = false;
+                Game.letClick = true;
+                Game.setCountry();
+                Game.stopCounting = false;
+                Game.time = 100;
+                Game.counting();
+            }
+            else{
+                Game.endGame();
+            }
         }
     },
     checkAnswer: function(event){
@@ -198,6 +202,7 @@ const Game = {
     endGame: function(){
         Game.stopCounting = true;
         Game.letClick = false;
+        Game.status = false;
         Game.gameCountry.textContent = "Gratulacje, ukończyłeś grę!";
         Game.pointsContainer.textContent = Game.points + " / " + Game.maxPoints;
         winBoard.show();

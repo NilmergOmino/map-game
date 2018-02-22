@@ -1,8 +1,13 @@
+@import 'normalize';
+
 $color-m1: rgb(20,20,20);
 $color-m1-a: rgba(20,20,20,0.7);
 $color-m4: rgb(240,240,240);
-$color-green: rgba(25,161,19,1);
+$color-green: rgb(25,161,19);
+$color-green-a: rgba(25,161,19,0.6);
 $color-green-light: rgba(0,220,0,1);
+$font-m: 'Ubuntu', sans-serif;
+
 body{
     background-color: $color-green;
     margin: 0;
@@ -10,6 +15,10 @@ body{
     flex-direction: column;
     justify-content: space-between;
     min-height: 100vh;
+    font-family: $font-m;
+}
+button, select, option{
+    font-family: $font-m;
 }
 .header{
     min-height: 80px;
@@ -65,6 +74,7 @@ body{
     color: $color-m4;
     padding: 7px;
     box-sizing: border-box;
+    min-height: 30px;
     font-size: 16px;
     transition: 0.3s;
     margin: 5px;
@@ -76,7 +86,9 @@ body{
 .select-map{
     -webkit-appearance: none;
     -moz-appearance: none;
-    padding: 6px;
+    option{
+        background-color: $color-m1;
+    }
 }
 .footer{
     min-height: 40px;
@@ -212,6 +224,7 @@ body{
     padding: 5px;
     text-align: center;
     box-sizing: border-box;
+    z-index: 110;
     &__btn_close, &__btn_reset{
         background-color: transparent;
         color: $color-m4;
@@ -219,6 +232,11 @@ body{
         border-radius: 0;
         padding: 5px;
         font-size: 14px;
+        box-sizing: border-box;
+        display: flex;
+        min-height: 30px;
+        justify-content: center;
+        align-items: center;
         cursor: pointer;
         transition: 0.3s;
         &:hover, &:focus{
@@ -294,7 +312,7 @@ body{
     list-style: none;
     flex-wrap: wrap;
     &-item{
-        border: 1px solid $color-green;
+        border: 1px solid $color-green-a;
         padding: 5px;
         margin: 4px;
     }
