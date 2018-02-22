@@ -18,13 +18,16 @@ const winBoard = {
         winBoard.btnsContainer.appendChild(btn);
         return btn;
     },
-    addNewResult: function(mapName, result){
+    addNewResult: function(mapName, result, maxPoints){
         if(localStorage.getItem(mapName) == null){
-            localStorage.setItem(mapName, JSON.stringify([]));
+            localStorage.setItem(mapName, JSON.stringify({
+                max: maxPoints,
+                arr: []
+            }));
         }
-        let resultsArr = JSON.parse(localStorage.getItem(mapName));
-        resultsArr.push(result);
-        localStorage.setItem(mapName, JSON.stringify(resultsArr));
+        let results = JSON.parse(localStorage.getItem(mapName));
+        results.arr.push(result);
+        localStorage.setItem(mapName, JSON.stringify(results));
         winBoard.winsContainer.innerHTML = '';
         winBoard.btnResetResults.classList.add('hidden');
         winBoard.showResults(mapName);
@@ -42,29 +45,36 @@ const winBoard = {
         divContainer.appendChild(mapTitle);
 
         if(localStorage.getItem(mapName) !== null){
-            let resultsArr = JSON.parse(localStorage.getItem(mapName));
-            let bestResult = Math.max(...resultsArr);
+            let results = JSON.parse(localStorage.getItem(mapName));
+            let bestResult = Math.max(...results.arr);
+
+            let maxPointsContainer = document.createElement('p');
+            maxPointsContainer.classList.add('board__max-points');
+            divContainer.appendChild(maxPointsContainer);
+            maxPointsContainer.innerHTML = 'Maksymalna liczba punktów: '+results.max;
 
             let bestResultContainer = document.createElement('p');
             bestResultContainer.classList.add('best-result');
             divContainer.appendChild(bestResultContainer);
-            bestResultContainer.innerHTML = 'Najlepszy wynik: <span class="best-result-value">'+bestResult+'</span>'
+            bestResultContainer.innerHTML = 'Twój najlepszy wynik: <span class="best-result-value">'+bestResult+'</span>';
 
             let otherResults = document.createElement('div');
             otherResults.classList.add('other-results');
             divContainer.appendChild(otherResults);
-            otherResults.innerHTML = '<p>Najnowsze:</p>';
+            otherResults.innerHTML = '<p>Najnowsze wyniki:</p>';
 
             let list = document.createElement('ol');
             list.classList.add('result-list');
             otherResults.appendChild(list);
 
             let fragment = document.createDocumentFragment();
-            resultsArr.reverse().forEach(el=>{
-                let item = document.createElement('li');
-                item.classList.add('result-list-item');
-                item.textContent = el;
-                fragment.appendChild(item);
+            results.arr.reverse().forEach((el,index)=>{
+                if(index < 10){
+                    let item = document.createElement('li');
+                    item.classList.add('result-list-item');
+                    item.textContent = el;
+                    fragment.appendChild(item);
+                }
             })
             list.appendChild(fragment);
         }

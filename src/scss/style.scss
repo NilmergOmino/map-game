@@ -1,14 +1,18 @@
 $color-m1: rgb(20,20,20);
+$color-m1-a: rgba(20,20,20,0.7);
 $color-m4: rgb(240,240,240);
-$color-green: rgba(0,150,0,1);
+$color-green: rgba(25,161,19,1);
 $color-green-light: rgba(0,220,0,1);
 body{
-    // background-color: rgb(120,220,125);
     background-color: $color-green;
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
 }
 .header{
-    min-height: 60px;
+    min-height: 80px;
     padding: 10px;
     box-sizing: border-box;
     text-align: center;
@@ -18,6 +22,18 @@ body{
     justify-content: center;
     align-items: center;
     color: $color-m4;
+    &__heading{
+        margin: 0;
+        padding: 0;
+    }
+    &__link{
+        text-decoration: none;
+        color: $color-green;
+        transition: 0.3s;
+        &:focus, &:hover{
+            color: $color-m4;
+        }
+    }
 }
 .start-panel{
     display: flex;
@@ -25,6 +41,36 @@ body{
     align-items: center;
     flex-direction: column;
     text-align: center;
+}
+.rules{
+    box-sizing: border-box;
+    padding: 15px 15px;
+    background-color: $color-m1-a;
+    color: $color-m4;
+    margin: 20px 0;
+    &__heading{
+        font-size: 26px;
+        margin: 0;
+    }
+    &__paragraph{
+        font-size: 16px;
+        font-weight: bold;
+        text-align: center;
+        color: rgba(240,240,240,0.9);
+    }
+}
+.footer{
+    min-height: 40px;
+    margin-top: 30px;
+    background-color: $color-m1;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &__paragraph_info{
+        color: $color-m4;
+        font-size: 12px;
+    }
 }
 .game{
     &-container{
@@ -39,11 +85,13 @@ body{
         position: fixed;
         top: 0;
         left: 0;
+        min-height: 80px;
         width: 100%;
         flex-direction: column;
         background-color: $color-m1;
         color: $color-m4;
-        padding: 10px 0;
+        justify-content: center;
+        align-items: center;
     }
     &-stats{
         display: flex;
@@ -62,7 +110,6 @@ body{
         }
     }
     &-map-container{
-
         display: flex;
         align-items: flex-start;
         justify-content: flex-start;
@@ -98,9 +145,7 @@ body{
         color: red;
     }
 }
-.hidden{
-    display: none;
-}
+
 .time{
     color: red;
     &_good{
@@ -130,17 +175,68 @@ body{
     }
 }
 .win-board{
-    color: white;
-    width: 80vw;
-    height: calc(90vh - 80px);
     position: fixed;
-    top: calc(80px + 5vh);
+    height: calc(100vh - 160px);
+    width: 80vw;
+    top: calc(100px);
     left: 10vw;
-    background-color: rgba(0,0,0,0.8);
+    overflow: scroll;
+    color: white;
+    background-color: rgba(0,0,0,0.9);
+    border: 1px solid rgba(250,250,250,0.4);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    text-align: center;
+    box-sizing: border-box;
+    &__btn_close, &__btn_reset{
+        background-color: transparent;
+        color: $color-m4;
+        border: 1px solid $color-m4;
+        border-radius: 0;
+        padding: 5px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: 0.3s;
+        &:hover, &:focus{
+            border: 1px solid $color-green;
+        }
+    }
     &__btn_close{
-        position: absolute;
-        top: 10px;
-        right: 10px;
+        align-self: flex-end;
+    }
+    &__btn_reset{
+        margin: 10px;
+    }
+    &__btns-container{
+        height: 30px;
+    }
+}
+.map-results{
+    background-color: rgba(0,0,0,0.2);
+    color: $color-m4;
+    padding: 10px;
+    margin: 20px 0;
+    box-shadow: 0px 0px 4px rgba(250,250,250,0.2);
+}
+.best-result-value{
+    font-weight: bold;
+    color: $color-green;
+}
+.result-list{
+    display: flex;
+    margin: 0;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    flex-wrap: wrap;
+    &-item{
+        border: 1px solid $color-green;
+        padding: 5px;
+        margin: 4px;
     }
 }
 .btn_back{
@@ -158,4 +254,7 @@ body{
 .africa{
     margin: 0 auto;
     width: 60%;
+}
+.hidden{
+    display: none;
 }

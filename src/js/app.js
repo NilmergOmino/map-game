@@ -163,7 +163,7 @@ const Game = {
     checkAnswer: function(event){
         Game.stopCounting = true;
         if(Game.letClick){
-            winBoard.addNewResult(Game.map, Game.points);
+            winBoard.addNewResult(Game.map, Game.points, Game.maxPoints);
             let x = event.clientX-10;
             let y = event.clientY-22+pageYOffset;
             Game.letClick = false;
@@ -204,7 +204,7 @@ const Game = {
         let btnStartView = winBoard.createButton('btn_restart', 'powrót do wyboru mapy');
         btnRestart.addEventListener('click', app.restartGame);
         btnStartView.addEventListener('click', app.startView);
-        winBoard.addNewResult(Game.map, Game.points);
+        winBoard.addNewResult(Game.map, Game.points, Game.maxPoints);
     },
     flyingPoint: function(content, pointType, x, y){
         let point = document.createElement('span');

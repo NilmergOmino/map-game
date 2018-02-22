@@ -11,45 +11,50 @@
     <header class="header" id="header">
         <h1 class="header__heading"><a href="index.html" class="header__link">Map Game</a> - nauka i zabawa</h1>
     </header>
-    <div class="start-panel" id="start-panel">
-        <div class="rules">
-            <h2 class="heading">Zasady gry</h2>
-            <p class="rules__paragraph">Musisz wskazać odpowiednie państwo lub województwo (zależnie od wybranej mapy)</p>
-            <p class="rules__paragraph">Czas na odpowiedź to 10 sekund</p>
-            <p class="rules__paragraph">Poprawna odpowiedź w ciągu 5 sekund to 2 punkty</p>
-            <p class="rules__paragraph">Poprawna odpowiedź w czasie dłuższym niż 5 sekund to 1 punkt</p>
-            <p class="rules__paragraph">Koniec czasu lub zła odpowiedź to -1 punkt</p>
-            <p class="rules__paragraph">Koniec gry następuje po odkryciu wszystkich elementów mapy</p>
-            <p class="rules__paragraph">Gotów?</p>
-            <p class="rules__paragraph">Wybierz mapę:</p>
-            <select name="select-map" id="select-map" class="select-map">
-                <option value="europe" selected>Europa</option>
-                <option value="africa">Afryka</option>
-                <option value="poland">Polska (województwa)</option>
-            </select>
-        </div>
-        <button class="btn_start" id="btn_start">Zaczynajmy!</button>
-        <button class="btn_win-board" id="btn_win-board">Moje wyniki</button>
-    </div>
-    <div class="win-board hidden" id="win-board">
-        <button class="win-board__btn_close" id="btn_close">zamknij</button>
-        <div class="win-board__btns-container" id="btns-container"></div>
-        <div class="win-board__wins-container" id="wins-container"></div>
-        <button class="btn_clear-storage" id="btn_clear-storage">resetuj wyniki</button>
-    </div>
-    <div class="game-container hidden" id="game-container">
-        <div class="game-panel" id="game-panel">
-            <button class="btn_back" id="btn_back">powrót</button>
-            <div class="game-stats">
-                <div class="points-container">Punkty: <span class="points" id="points">0</span></div>
-                <div class="time-container">Czas: <span class="time" id="time">10</span></div>
+    <main class="main">
+        <div class="start-panel" id="start-panel">
+            <div class="rules">
+                <h2 class="rules__heading">Zasady gry</h2>
+                <p class="rules__paragraph">Musisz wskazać odpowiednie elementy mapy</p>
+                <p class="rules__paragraph">Czas na odpowiedź to 10 sekund</p>
+                <p class="rules__paragraph">Poprawna odpowiedź w ciągu 5 sekund to 2 punkty</p>
+                <p class="rules__paragraph">Poprawna odpowiedź w czasie dłuższym niż 5 sekund to 1 punkt</p>
+                <p class="rules__paragraph">Koniec czasu lub zła odpowiedź to -1 punkt</p>
+                <p class="rules__paragraph">Koniec gry następuje po odkryciu wszystkich elementów mapy</p>
+                <p class="rules__paragraph">Gotowy?</p>
+                <p class="rules__paragraph">Wybierz mapę:</p>
+                <select name="select-map" id="select-map" class="select-map">
+                    <option value="europe" selected>Europa</option>
+                    <option value="africa">Afryka</option>
+                    <option value="poland">Polska (województwa)</option>
+                </select>
+                <button class="btn_start" id="btn_start">Zaczynajmy!</button>
             </div>
-            <div class="game-country" id="game-country"></div>
+            <button class="btn_win-board" id="btn_win-board">Moje wyniki</button>
         </div>
-        <div class="game-map-container" id="game-map-container">
-        <!-- Maps from : https://simplemaps.com/resources/svg-maps -->
+        <div class="win-board hidden" id="win-board">
+            <button class="win-board__btn_close" id="btn_close">zamknij</button>
+            <div class="win-board__btns-container" id="btns-container"></div>
+            <div class="win-board__wins-container" id="wins-container"></div>
+            <button class="win-board__btn_reset" id="btn_clear-storage">resetuj wyniki</button>
         </div>
-    </div>
+        <div class="game-container hidden" id="game-container">
+            <div class="game-panel" id="game-panel">
+                <button class="btn_back" id="btn_back">powrót</button>
+                <div class="game-stats">
+                    <div class="points-container">Punkty: <span class="points" id="points">0</span></div>
+                    <div class="time-container">Czas: <span class="time" id="time">10</span></div>
+                </div>
+                <div class="game-country" id="game-country"></div>
+            </div>
+            <div class="game-map-container" id="game-map-container">
+            <!-- Maps from : https://simplemaps.com/resources/svg-maps -->
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <p class="footer__paragraph_info">Strona zapisuje wyniki gry w pamięci Twojej przeglądarki.</p>
+    </footer>
     <script src="js/bundle.js"></script>
 </body>
 </html>
