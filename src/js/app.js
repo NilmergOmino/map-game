@@ -163,7 +163,6 @@ const Game = {
     checkAnswer: function(event){
         Game.stopCounting = true;
         if(Game.letClick){
-            winBoard.addNewResult(Game.map, Game.points, Game.maxPoints);
             let x = event.clientX-10;
             let y = event.clientY-22+pageYOffset;
             Game.letClick = false;
@@ -197,6 +196,8 @@ const Game = {
         }
     },
     endGame: function(){
+        Game.stopCounting = true;
+        Game.letClick = false;
         Game.gameCountry.textContent = "Gratulacje, ukończyłeś grę!";
         Game.pointsContainer.textContent = Game.points + " / " + Game.maxPoints;
         winBoard.show();
