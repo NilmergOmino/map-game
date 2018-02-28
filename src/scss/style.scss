@@ -330,11 +330,15 @@ button, select, option{
     margin: 0 auto;
     width: 60%;
 }
+.america_s{
+    margin: 0 auto;
+    width: 30%;
+}
 .hidden{
     display: none;
 }
 @media (max-width: 1300px) {
-    .poland{
+    .poland, .america_s{
         width: 50%;
     }
 }
@@ -342,8 +346,13 @@ button, select, option{
     .africa{
         width: 90%;
     }
-    .poland{
+    .poland, .america_s{
         width: 60%;
+    }
+}
+@media (max-width: 800px) {
+    .america_s{
+        width: 80%;
     }
 }
 @media (max-width: 560px) {
