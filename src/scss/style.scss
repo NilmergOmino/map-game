@@ -191,20 +191,25 @@ button, select, option{
 .map-item{
     transition: 0.2s;
     &:hover{
+        stroke: rgb(40,40,40);
         fill: #444;
     }
-}
-.map-item_correct{
-    fill: #242;
-    stroke: white;
-    &:hover{
+    &_correct{
         fill: #242;
+        stroke: white;
+        &:hover{
+            stroke: white;
+            fill: #242;
+        }
     }
-}
-.map-item_wrong{
-    fill: #800;
-    &:hover{
+    &_wrong{
         fill: #800;
+        &:hover{
+            fill: #800;
+        }
+    }
+    &_inactive{
+        opacity: 0.2;
     }
 }
 .win-board{
@@ -317,10 +322,18 @@ button, select, option{
         margin: 4px;
     }
 }
-
+.usa{
+    width: 100%;
+}
 .europe{
     width: 100%;
-    transform: translateX(-10%);
+    margin: 0 auto;
+    stroke-width: .2;
+}
+.asia{
+    width: 100%;
+    margin: 0 auto;
+    stroke-width: .3;
 }
 .poland{
     margin: 0 auto;
@@ -334,25 +347,55 @@ button, select, option{
     margin: 0 auto;
     width: 30%;
 }
+.america_n{
+    stroke-width: .4;
+    margin: 0 auto;
+    width: 100%;
+}
+.america_m{
+    width: 70%;
+    margin: 0 auto;
+    stroke-width: .2;
+}
 .hidden{
     display: none;
 }
 @media (max-width: 1300px) {
+    .africa{
+        width: 90%;
+    }
     .poland, .america_s{
         width: 50%;
     }
 }
 @media (max-width: 1100px) {
     .africa{
-        width: 90%;
+        width: 95%;
     }
     .poland, .america_s{
         width: 60%;
     }
+    .america_n{
+        transform-origin: 50% 0;
+        transform: translate(-10%, -10%) scale(1.1);
+    }
+    .america_m{
+        width: 100%;
+    }
+    .usa{
+        transform-origin: 50% 40%;
+        transform: translate(-10%, 5%) scale(1.15);
+    }
 }
 @media (max-width: 800px) {
-    .america_s{
+    .africa{
+        width: 100%;
+    }
+    .poland, .america_s{
         width: 80%;
+    }
+    .america_n{
+        transform: translate(-10%, -15%) scale(1.25);
     }
 }
 @media (max-width: 560px) {
@@ -365,8 +408,5 @@ button, select, option{
         &-map{
             width: 100%;
         }
-    }
-    .europe{
-        transform: translateX(-10%) scale(1.2);
     }
 }
