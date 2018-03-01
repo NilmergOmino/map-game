@@ -17,24 +17,28 @@
             <div class="rules">
                 <h2 class="rules__heading">Zasady gry</h2>
                 <p class="rules__paragraph">Musisz wskazać odpowiednie elementy mapy</p>
-                <p class="rules__paragraph">Czas na odpowiedź to 10 sekund</p>
-                <p class="rules__paragraph">Poprawna odpowiedź w ciągu 5 sekund to 2 punkty</p>
-                <p class="rules__paragraph">Poprawna odpowiedź w czasie dłuższym niż 5 sekund to 1 punkt</p>
-                <p class="rules__paragraph">Koniec czasu lub zła odpowiedź to -1 punkt</p>
+                <p class="rules__paragraph">Czas na odpowiedź to <span class="text_blue">10 sekund</span></p>
+                <p class="rules__paragraph">Poprawna odpowiedź w ciągu 5 sekund to  <span class="text_green">2 punkty</span></p>
+                <p class="rules__paragraph">Poprawna odpowiedź w czasie dłuższym niż 5 sekund to  <span class="text_green">1 punkt</span></p>
+                <p class="rules__paragraph">Koniec czasu lub zła odpowiedź to  <span class="text_red">-1 punkt</span></p>
                 <p class="rules__paragraph">Koniec gry następuje po odkryciu wszystkich elementów mapy</p>
                 <p class="rules__paragraph">Gotowy?</p>
-                <p class="rules__paragraph">Wybierz mapę:</p>
-                <select name="select-map" id="select-map" class="select-map">
-                    <option value="europe" selected>Europa</option>
-                    <option value="africa">Afryka</option>
-                    <option value="asia">Azja</option>
-                    <option value="america_n">Ameryka północna</option>
-                    <option value="america_s">Ameryka południowa</option>
-                    <option value="america_m">Ameryka środkowa</option>
-                    <option value="poland">Polska (województwa)</option>
-                    <option value="usa">USA (stany)</option>
-                </select>
-                <button class="btn_start" id="btn_start">Zaczynajmy!</button>
+                <div class="choose-container">
+                    <label for="select-map" class="label_select-map">wybierz mapę:</label>
+                    <div class="select-container">
+                        <select name="select-map" id="select-map" class="select-map">
+                            <option value="europe" selected>Europa</option>
+                            <option value="africa">Afryka</option>
+                            <option value="asia">Azja</option>
+                            <option value="america_n">Ameryka północna</option>
+                            <option value="america_s">Ameryka południowa</option>
+                            <option value="america_m">Ameryka środkowa</option>
+                            <option value="poland">Polska (województwa)</option>
+                            <option value="usa">USA (stany)</option>
+                        </select>
+                        <button class="btn_start" id="btn_start">Zaczynajmy!</button>
+                    </div>
+                </div>
             </div>
             <button class="btn_win-board" id="btn_win-board">Moje wyniki</button>
         </div>
