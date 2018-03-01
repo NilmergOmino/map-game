@@ -167,8 +167,8 @@ const Game = {
     checkAnswer: function(event){
         Game.stopCounting = true;
         if(Game.letClick){
-            let x = event.clientX-10;
-            let y = event.clientY-22+pageYOffset;
+            let x = event.clientX-14;
+            let y = event.clientY-34+pageYOffset;
             Game.letClick = false;
             let mapItemId = event.target.id;
             if(mapItemId == Game.currentCountry){
