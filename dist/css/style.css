@@ -166,6 +166,11 @@ button, select, option {
   text-align: center; }
 
 .rules {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  flex-direction: column;
   box-sizing: border-box;
   padding: 15px 15px;
   background-color: rgba(12, 36, 60, 0.7);
@@ -175,24 +180,54 @@ button, select, option {
     font-size: 26px;
     margin: 0; }
   .rules__paragraph {
+    margin: 10px;
     font-size: 16px;
     font-weight: bold;
     text-align: center;
     color: rgba(240, 240, 240, 0.9); }
 
+.text_blue {
+  color: #3197fc; }
+
+.text_green {
+  color: #00dc00; }
+
+.text_red {
+  color: red; }
+
+.select-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap; }
+
+.choose-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; }
+
 .btn_start, .select-map {
   background-color: transparent;
   border: 1px solid #3197fc;
   color: #f0f0f0;
-  padding: 7px;
   box-sizing: border-box;
-  min-height: 30px;
+  min-height: 35px;
   font-size: 16px;
   transition: 0.3s;
   margin: 5px;
-  cursor: pointer; }
+  cursor: pointer;
+  padding: 0 5px; }
+  .btn_start::-moz-focus-inner, .select-map::-moz-focus-inner {
+    border: 0; }
   .btn_start:hover, .btn_start:focus, .select-map:hover, .select-map:focus {
-    border: 1px solid #f0f0f0; }
+    border: 1px solid #f0f0f0;
+    outline: none; }
+
+.label_select-map {
+  padding: 0 5px;
+  align-self: flex-start;
+  color: #3197fc;
+  font-weight: bold; }
 
 .select-map {
   -webkit-appearance: none;
@@ -267,7 +302,7 @@ button, select, option {
 
 .flying-point {
   animation: fly-away;
-  animation-duration: 1.5s;
+  animation-duration: 1s;
   animation-fill-mode: forwards;
   animation-timing-function: ease-out;
   font-size: 28px;
@@ -279,7 +314,7 @@ button, select, option {
     color: #00dc00; }
   .flying-point_plus-plus {
     color: #00dc00;
-    font-size: 20px; }
+    font-size: 28px; }
   .flying-point_minus {
     color: #C90814; }
 
@@ -487,5 +522,9 @@ button, select, option {
     font-size: 14px; }
   .game-map {
     width: 100%; } }
+
+@media (max-width: 322px) {
+  .label_select-map {
+    align-self: center; } }
 
 /*# sourceMappingURL=style.css.map*/

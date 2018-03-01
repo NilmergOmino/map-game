@@ -59,6 +59,11 @@ button, select, option{
     text-align: center;
 }
 .rules{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-direction: column;
     box-sizing: border-box;
     padding: 15px 15px;
     background-color: $color-m1-a;
@@ -69,26 +74,59 @@ button, select, option{
         margin: 0;
     }
     &__paragraph{
+        margin: 10px;
         font-size: 16px;
         font-weight: bold;
         text-align: center;
         color: rgba(240,240,240,0.9);
     }
 }
+.text{
+    &_blue{
+        color: $color-blue-light;
+    }
+    &_green{
+        color: $color-green-light;
+    }
+    &_red{
+        color: red;
+    }
+}
+.select-container{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.choose-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
 .btn_start, .select-map{
     background-color: transparent;
     border: 1px solid $color-blue-light;
     color: $color-m4;
-    padding: 7px;
     box-sizing: border-box;
-    min-height: 30px;
+    min-height: 35px;
     font-size: 16px;
     transition: 0.3s;
     margin: 5px;
     cursor: pointer;
+    padding: 0 5px;
+    &::-moz-focus-inner {
+        border: 0;
+    }
     &:hover, &:focus{
         border: 1px solid $color-m4;
+        outline: none;
     }
+}
+.label_select-map{
+    padding: 0 5px;
+    align-self: flex-start;
+    color: $color-blue-light;
+    font-weight: bold;
 }
 .select-map{
     -webkit-appearance: none;
@@ -167,7 +205,7 @@ button, select, option{
 }
 .flying-point{
     animation: fly-away;
-    animation-duration: 1.5s;
+    animation-duration: 1s;
     animation-fill-mode: forwards;
     animation-timing-function: ease-out;
     font-size: 28px;
@@ -180,7 +218,7 @@ button, select, option{
     }
     &_plus-plus{
         color: $color-green-light;
-        font-size: 20px;
+        font-size: 28px;
     }
     &_minus{
         color: #C90814;
@@ -420,5 +458,10 @@ button, select, option{
         &-map{
             width: 100%;
         }
+    }
+}
+@media (max-width: 322px) {
+    .label_select-map{
+        align-self: center;
     }
 }
